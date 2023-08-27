@@ -10,11 +10,11 @@ class User extends Equatable {
   @override
   List<Object?> get props => [id];
 
-  const User(
-    this.userName,
-    this.password,
-    this.groupName,
-    this.description,
-    this.id,
-  );
+  const User({
+    required this.userName,
+    required this.password,
+    required this.groupName,
+    required this.description,
+    required this.id,
+  });
 }
