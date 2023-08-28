@@ -7,7 +7,7 @@ import 'package:marketplace/core/usecase/usecase.dart';
 import 'package:marketplace/src/domain/entities/comments.dart';
 import 'package:marketplace/src/domain/repository/comments_repository.dart';
 
-class SeeAllCommentsUseCase extends UseCase<List<Comments>, Unit> {
+class SeeAllCommentsUseCase extends UseCase<List<Comments>, int> {
   @override
   FutureOr<Either<Failure, List<Comments>>> call(p) {
     final CommentsRepository commentsRepository = services.get<CommentsRepository>();
