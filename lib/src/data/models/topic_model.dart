@@ -7,6 +7,7 @@ class TopicModel extends Topic {
     required super.data,
     required super.id,
     required super.likes,
+    required super.numComments,
   });
 
   factory TopicModel.fromMap(Map<String, dynamic> map) {
@@ -14,6 +15,7 @@ class TopicModel extends Topic {
       id: map['id'] as int,
       data: map['data'] as String,
       likes: map['likes'] as int,
+      numComments: map['numComments'] as int,
     );
   }
 
