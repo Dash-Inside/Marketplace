@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_types",
+  "info": {
+    "singularName": "user-type",
+    "pluralName": "user-types",
+    "displayName": "userType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "userName": {
+      "type": "text"
+    },
+    "groupName": {
+      "type": "text"
+    },
+    "userID": {
+      "type": "uid"
+    },
+    "password": {
+      "type": "password"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

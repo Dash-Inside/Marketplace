@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments_types",
+  "info": {
+    "singularName": "comments-type",
+    "pluralName": "comments-types",
+    "displayName": "CommentsType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "commentID": {
+      "type": "uid"
+    },
+    "commentText": {
+      "type": "text"
+    },
+    "UserName": {
+      "type": "text"
+    },
+    "TopicID": {
+      "type": "string"
+    }
+  }
+}

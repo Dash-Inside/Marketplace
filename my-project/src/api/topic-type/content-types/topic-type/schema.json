@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topic_types",
+  "info": {
+    "singularName": "topic-type",
+    "pluralName": "topic-types",
+    "displayName": "TopicType"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "TopicsID": {
+      "type": "uid"
+    },
+    "data": {
+      "type": "text"
+    },
+    "likes": {
+      "type": "integer"
+    },
+    "numComments": {
+      "type": "integer"
+    }
+  }
+}
