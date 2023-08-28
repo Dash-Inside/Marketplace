@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'package:marketplace/src/domain/entities/comments.dart';
 
 class CommentsModel extends Comments {
-  const CommentsModel({required super.commentText, required super.id, required super.userName, required super.topicID});
+  const CommentsModel({required super.commentText, required super.id, required super.userName});
 
   factory CommentsModel.fromMap(Map<String, dynamic> map) {
     return CommentsModel(
       id: map['id'] as int,
       commentText: map['attributes']['commentText'] as String,
       userName: map['attributes']['userName'] as String,
-      topicID: map['attributes']['topicID'] as int,
     );
   }
 
@@ -22,7 +21,6 @@ class CommentsModel extends Comments {
         'id': id,
         'commentText': commentText,
         'userName': userName,
-        'topicID': topicID,
       }
     };
   }
@@ -31,6 +29,6 @@ class CommentsModel extends Comments {
 
   @override
   String toString() {
-    return 'TopicModel(id: $id, commentText: $commentText, userName: $userName, topicID: $topicID)';
+    return 'TopicModel(id: $id, commentText: $commentText, userName: $userName)';
   }
 }
