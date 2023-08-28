@@ -4,7 +4,8 @@
   "info": {
     "singularName": "comments-type",
     "pluralName": "comments-types",
-    "displayName": "CommentsType"
+    "displayName": "CommentsType",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,9 +20,6 @@
     },
     "UserName": {
       "type": "text"
-    },
-    "TopicID": {
-      "type": "string"
     }
   }
 }

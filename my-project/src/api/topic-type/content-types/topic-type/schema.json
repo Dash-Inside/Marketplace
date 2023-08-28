@@ -4,7 +4,8 @@
   "info": {
     "singularName": "topic-type",
     "pluralName": "topic-types",
-    "displayName": "TopicType"
+    "displayName": "TopicType",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,9 @@
     },
     "numComments": {
       "type": "integer"
+    },
+    "commentsId": {
+      "type": "text"
     }
   }
 }
