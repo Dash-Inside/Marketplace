@@ -11,7 +11,7 @@ class CommentsRepositoryImpl implements CommentsRepository {
   }
 
   @override
-  Future<Either<Failure, List<Comments>>> seeAllComments() {
+  Future<Either<Failure, List<Comments>>> seeAllComments({required int id}) {
     // TODO: implement seeAllComments
     throw UnimplementedError();
   }
