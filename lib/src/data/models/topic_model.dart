@@ -27,6 +27,7 @@ class TopicModel extends Topic {
         'id': id,
         'data': data,
         'likes': likes,
+        'numComments': numComments,
       }
     };
   }
@@ -35,6 +36,6 @@ class TopicModel extends Topic {
 
   @override
   String toString() {
-    return 'TopicModel(id: $id, data: $data, likes: $likes)';
+    return 'TopicModel(id: $id, data: $data, likes: $likes, numComments: $numComments)';
   }
 }
