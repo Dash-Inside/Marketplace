@@ -8,7 +8,7 @@ class TopicModel extends Topic {
     required super.id,
     required super.likes,
     required super.numComments,
-    required super.commentsId,
+    required super.commentsText,
   });
 
   factory TopicModel.fromMap(Map<String, dynamic> map) {
@@ -17,7 +17,7 @@ class TopicModel extends Topic {
       data: map['data'] as String,
       likes: map['likes'] as int,
       numComments: map['numComments'] as int,
-      commentsId: map['commentsId'] as List<int>,
+      commentsText: map['commentsText'] as Map<String, String>,
     );
   }
 
@@ -30,7 +30,7 @@ class TopicModel extends Topic {
         'data': data,
         'likes': likes,
         'numComments': numComments,
-        'commentsId': commentsId,
+        'commentsText': commentsText,
       }
     };
   }
@@ -39,6 +39,6 @@ class TopicModel extends Topic {
 
   @override
   String toString() {
-    return 'TopicModel(id: $id, data: $data, likes: $likes, numComments: $numComments, commentsId: $commentsId)';
+    return 'TopicModel(id: $id, data: $data, likes: $likes, numComments: $numComments, commentsText: $commentsText)';
   }
 }

@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:marketplace/core/failure/failure.dart';
-import 'package:marketplace/src/domain/entities/comments.dart';
 import 'package:marketplace/src/domain/entities/topic.dart';
-import 'package:marketplace/src/domain/entities/user.dart';
 
 abstract class TopicRepository {
   Future<Either<Failure, List<Topic>>> getAllTopicsByLikes();
@@ -17,7 +15,10 @@ abstract class TopicRepository {
     required String data,
   });
 
-  Future<Either<Failure, Map<User, Comments>>> getComments({
-    required int id,
+  Future<Either<Failure, Topic>> getComments(unit);
+
+  Future<Either<Failure, Topic>> addComment({
+    required String userName,
+    required String commentText,
   });
 }

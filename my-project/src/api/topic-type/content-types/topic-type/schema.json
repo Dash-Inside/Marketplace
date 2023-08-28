@@ -24,7 +24,7 @@
     "numComments": {
       "type": "integer"
     },
-    "commentsId": {
+    "commentsText": {
       "type": "text"
     }
   }

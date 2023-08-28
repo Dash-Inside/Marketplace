@@ -5,6 +5,7 @@ class Topic extends Equatable {
   final String data;
   final int likes;
   final int numComments;
+  final Map<String, String> commentsText;
 
   @override
   List<Object?> get props => [id];
@@ -14,5 +15,6 @@ class Topic extends Equatable {
     required this.id,
     required this.data,
     required this.likes,
+    required this.commentsText,
   });
 }
