@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class Topic extends Equatable {
+  final String userName;
+  final String groupName;
   final int id;
   final String data;
   final int likes;
@@ -11,6 +13,8 @@ class Topic extends Equatable {
   List<Object?> get props => [id];
 
   const Topic({
+    required this.userName,
+    required this.groupName,
     required this.numComments,
     required this.id,
     required this.data,

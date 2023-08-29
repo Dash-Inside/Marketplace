@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:marketplace/core/failure/failure.dart';
 import 'package:marketplace/src/domain/entities/topic.dart';
-import 'package:marketplace/src/domain/entities/user.dart';
 import 'package:marketplace/src/domain/repository/topic_repository.dart';
 
 class TopicRepositoryImpl implements TopicRepository {
