@@ -11,21 +11,24 @@ class TopicDataSource {
 
   Future<void> addComment({
     required int id,
-    required Map<String, String> commentText,
+    required Map<String, String> commentsText,
   }) async {
     final Response response = await _client.put(
-      'http:/127.0.0.1:1337/api/topic-types/:$id',
+      'http://127.0.0.1:1337/api/topic-types/$id',
       data: jsonEncode({
-        'commentsText': commentText,
+        'commentsText': commentsText,
       }),
     );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update comments. Status code: ${response.statusCode}');
+    }
   }
 
-  Future<TopicModel> addTopic(
+  Future<TopicModel> addTopic({
     Map<String, String>? commentText,
-    int likes,
-    int id,
-    int numComments, {
+    required int likes,
+    required int id,
+    required int numComments,
     required String userName,
     required String groupName,
     required String data,
@@ -39,22 +42,42 @@ class TopicDataSource {
       numComments: numComments,
       commentsText: commentText ?? {},
     );
+
     final Response response = await _client.post(
       topicUrl,
       data: topicModel.toJson(),
     );
 
-    return topicModel;
+    if (response.statusCode == 200) {
+      return topicModel;
+    } else {
+      throw Exception('Failed to add topic. Status code: ${response.statusCode}');
+    }
   }
 
-  Future<dynamic> getComments({
+  Future<List<dynamic>> getComments({
     required int id,
   }) async {
     final Response response = await _client.get(
-      ('$topicUrl/$id'),
+      '$topicUrl/$id',
     );
-    final List<dynamic> listMap = response.data['data']['attributes']['commentText'];
-    return listMap;
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = response.data;
+
+      if (responseData.containsKey('data') && responseData['data'] is Map<String, dynamic> && responseData['data'].containsKey('attributes')) {
+        final Map<String, dynamic> attributes = responseData['data']['attributes'];
+
+        if (attributes.containsKey('commentText') && attributes['commentText'] is List<dynamic>) {
+          return attributes['commentText'];
+        } else {
+          throw Exception('Invalid commentText data in API response');
+        }
+      } else {
+        throw Exception('Invalid data or attributes in API response');
+      }
+    } else {
+      throw Exception('Failed to fetch comments. Status code: ${response.statusCode}');
+    }
   }
 
   Future<void> likeTopic({
@@ -71,13 +94,59 @@ class TopicDataSource {
     );
   }
 
-  Future<TopicModel> GetAllTopicsByLikes() async {
-    final Response response = await _client.get('http://localhost:1337/admin/content-manager/collectionType/api::topic-type.topic-type?page=1&pageSize=10&sort=likes:DESC');
-    return response.data['data']['attributes'];
+  Future<List<TopicModel>> getAllTopicsByLikes() async {
+    final Response response = await _client.get(
+      'http://localhost:1337/admin/content-manager/collectionType/api::topic-type.topic-type?page=1&pageSize=10&sort=likes:DESC',
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> responseData = response.data['data'];
+      final List<TopicModel> topics = [];
+
+      for (final topicData in responseData) {
+        final Map<String, dynamic> attributes = topicData['attributes'];
+        final TopicModel topic = TopicModel(
+          userName: attributes['userName'],
+          groupName: attributes['groupName'],
+          data: attributes['data'],
+          id: attributes['id'],
+          likes: attributes['likes'],
+          numComments: attributes['numComments'],
+          commentsText: Map<String, String>.from(attributes['commentText']),
+        );
+        topics.add(topic);
+      }
+      return topics;
+    } else {
+      throw Exception('Failed to fetch topics. Status code: ${response.statusCode}');
+    }
   }
 
-  Future<TopicModel> GetAllTopicsByTime() async {
-    final Response response = await _client.get('http://localhost:1337/admin/content-manager/collectionType/api::topic-type.topic-type?page=1&pageSize=10&sort=createdAt:DESC');
-    return response.data['data']['attributes'];
+  Future<List<TopicModel>> getAllTopicsByTime() async {
+    final Response response = await _client.get(
+      'http://localhost:1337/admin/content-manager/collectionType/api::topic-type.topic-type?page=1&pageSize=10&sort=createdAt:DESC',
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> responseData = response.data['data'];
+      final List<TopicModel> topics = [];
+
+      for (final topicData in responseData) {
+        final Map<String, dynamic> attributes = topicData['attributes'];
+        final TopicModel topic = TopicModel(
+          userName: attributes['userName'],
+          groupName: attributes['groupName'],
+          data: attributes['data'],
+          id: attributes['id'],
+          likes: attributes['likes'],
+          numComments: attributes['numComments'],
+          commentsText: Map<String, String>.from(attributes['commentText']),
+        );
+        topics.add(topic);
+      }
+      return topics;
+    } else {
+      throw Exception('Failed to fetch topics. Status code: ${response.statusCode}');
+    }
   }
 }
