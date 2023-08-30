@@ -14,10 +14,10 @@ class UserModel extends User {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'] as int,
-      userName: map['userName'],
-      password: map['password'],
-      groupName: map['groupName'],
-      description: map['description'],
+      userName: map['userName'] as String,
+      password: map['password'] as String,
+      groupName: map['groupName'] as String,
+      description: map['description'] as String,
     );
   }
 
