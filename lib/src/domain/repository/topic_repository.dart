@@ -19,6 +19,6 @@ abstract class TopicRepository {
 
   Future<Either<Failure, Topic>> addComment({
     required String userName,
-    required String commentText,
+    required String commentsText,
   });
 }

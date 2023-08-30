@@ -13,16 +13,25 @@ class AddNewUserUseCase extends UseCase<User, NewUserData> {
     return userRepository.addNewUser(
       userName: p.userName,
       password: p.password,
+      description: p.description,
+      groupName: p.groupName,
+      id: p.id,
     );
   }
 }
 
 class NewUserData {
+  final int id;
+  final String description;
+  final String groupName;
   final String userName;
   final String password;
 
   NewUserData(
     this.userName,
     this.password,
+    this.id,
+    this.description,
+    this.groupName,
   );
 }

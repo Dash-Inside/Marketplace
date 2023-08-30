@@ -1,26 +1,41 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:marketplace/core/failure/failure.dart';
 
 import 'package:marketplace/src/data/models/topic_model.dart';
+import 'package:marketplace/src/domain/entities/topic.dart';
 
 class TopicDataSource {
   final Dio _client = Dio();
   static const String topicUrl = 'http://127.0.0.1:1337/api/topic-types';
   static const String userUrl = 'http://127.0.0.1:1337/api/user-types';
 
-  Future<void> addComment({
-    required int id,
+  Future<TopicModel> addComment({
     required Map<String, String> commentsText,
   }) async {
     final Response response = await _client.put(
-      'http://127.0.0.1:1337/api/topic-types/$id',
-      data: jsonEncode({
+      'http://127.0.0.1:1337/api/topic-types',
+      data: {
         'commentsText': commentsText,
-      }),
+      },
     );
-    if (response.statusCode != 200) {
-      throw Exception('Failed to update comments. Status code: ${response.statusCode}');
+
+    if (response.statusCode == 200) {
+      final Response commResponse = await _client.get('$topicUrl/$id');
+      int numComments = response.data['data']['attributes']['numComments'];
+      numComments = numComments + 1;
+      final Response commResponse2 = await _client.post(
+        '$topicUrl/$id',
+        data: jsonEncode({
+          'numComments': numComments,
+        }),
+      );
+      final topic = TopicModel.fromJson(response.data);
+      return topic;
+    } else {
+      throw Error();
     }
   }
 
@@ -55,7 +70,7 @@ class TopicDataSource {
     }
   }
 
-  Future<List<dynamic>> getComments({
+  Future<Topic> getComments({
     required int id,
   }) async {
     final Response response = await _client.get(

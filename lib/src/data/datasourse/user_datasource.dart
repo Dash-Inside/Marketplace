@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:marketplace/core/failure/failure.dart';
 
 import 'package:marketplace/src/data/models/user_model.dart';
+import 'package:marketplace/src/domain/entities/user.dart';
 
 class UserDataSource {
   final Dio _client = Dio();
@@ -36,48 +39,63 @@ class UserDataSource {
     }
   }
 
-  Future<void> changeDescription({required int id, required String newDescription}) async {
-    final Response response = await _client.post(
-      '$userUrl/$id',
-      data: jsonEncode({
-        'description': newDescription,
-      }),
-    );
+  Future<UserModel> changeDescription({
+    required String newDescription,
+    required String userName,
+    required String password,
+    required String groupName,
+    required int id,
+  }) async {
+    try {
+      final Response response = await _client.post(
+        userUrl,
+        data: jsonEncode({
+          'newdescription': newDescription,
+          'userName': userName,
+          'password': password,
+          'groupName': groupName,
+          'id': id,
+        }),
+      );
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to update description. Status code: ${response.statusCode}');
+      if (response.statusCode != 200) {
+        throw Exception('Failed to update description. Status code: ${response.statusCode}');
+      }
+
+      final updatedUser = UserModel.fromJson(response.data);
+      return updatedUser;
+    } catch (e) {
+      throw Exception('An error occurred while updating description: $e');
     }
   }
 
-  Future<void> changeGroup({
+  Future<UserModel> changeGroup({
+    required String description,
+    required String userName,
+    required String password,
+    required String newGroupName,
     required int id,
-    required String newGroup,
   }) async {
-    final Response response = await _client.post(
-      '$topicUrl/$id',
-      data: jsonEncode({
-        'groupName': newGroup,
-      }),
-    );
+    try {
+      final Response response = await _client.post(
+        userUrl,
+        data: jsonEncode({
+          'description': description,
+          'userName': userName,
+          'password': password,
+          'groupName': newGroupName,
+          'id': id,
+        }),
+      );
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to update group. Status code: ${response.statusCode}');
-    }
-  }
+      if (response.statusCode != 200) {
+        throw Exception('Failed to update group. Status code: ${response.statusCode}');
+      }
 
-  Future<void> changeName({
-    required int id,
-    required String newName,
-  }) async {
-    final Response response = await _client.post(
-      '$userUrl/$id',
-      data: jsonEncode({
-        'userName': newName,
-      }),
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to update name. Status code: ${response.statusCode}');
+      final updatedUser = UserModel.fromJson(response.data);
+      return updatedUser;
+    } catch (e) {
+      throw Exception('An error occurred while updating group: $e');
     }
   }
 
