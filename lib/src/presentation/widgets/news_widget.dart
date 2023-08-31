@@ -14,6 +14,11 @@ class NewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(
+        bottom: 18.0,
+        left: 24.0,
+        right: 24.0,
+      ),
       decoration: BoxDecoration(
         color: Color.fromRGBO(232, 232, 232, 1),
         borderRadius: BorderRadius.circular(12.0),

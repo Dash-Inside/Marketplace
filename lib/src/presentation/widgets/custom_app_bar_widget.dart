@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
   final String title;
+
   const CustomAppBarWidget({required this.title, super.key});
 
   @override
@@ -29,10 +30,9 @@ class CustomAppBarWidget extends StatelessWidget {
             child: CircleAvatar(
               radius: 19,
               backgroundColor: Color.fromRGBO(36, 180, 126, 1),
-              child: IconButton(
-                iconSize: 19,
-                icon: Icon(Icons.photo_camera),
-                onPressed: () {},
+              child: Icon(
+                Icons.photo_camera,
+                size: 19.0,
               ),
             ),
           ),
