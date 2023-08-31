@@ -51,6 +51,11 @@ class HomePage extends StatelessWidget {
                   width: 140.0,
                   height: 48.0,
                   child: FilledButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color.fromRGBO(36, 180, 126, 1),
+                      ),
+                    ),
                     icon: Icon(Icons.analytics_outlined),
                     onPressed: () {},
                     label: Text('Trending'),
@@ -117,6 +122,21 @@ class HomePage extends StatelessWidget {
             ]),
           ),
         ],
+      ),
+      floatingActionButton: SizedBox(
+        width: 80.0,
+        height: 42.0,
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(88.0))),
+          elevation: 0.0,
+          backgroundColor: Color.fromRGBO(36, 180, 126, 1),
+          onPressed: () {},
+          child: Text(
+            'Post',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }

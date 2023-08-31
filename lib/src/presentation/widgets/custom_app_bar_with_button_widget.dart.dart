@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/src/presentation/widgets/custom_app_bar_widget.dart';
+import 'package:marketplace/src/presentation/widgets/filled_button_widget.dart';
 
 class CustomAppBarWithButtonWidget extends StatelessWidget {
   final String title;
@@ -44,13 +45,52 @@ class CustomAppBarWithButtonWidget extends StatelessWidget {
                         ),
                         elevation: 16,
                         child: Container(
+                          margin: EdgeInsets.all(16.0),
                           height: 524.0,
                           width: 366.0,
                           child: Column(
                             children: [
-                              Container(
-                                  margin: EdgeInsets.all(10.0),
-                                  child: CustomAppBarWidget(title: 'Username')),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: CustomAppBarWidget(title: 'Username'),
+                              ),
+                              TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Group',
+                                  suffixIconColor:
+                                      Color.fromRGBO(110, 110, 110, 1),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Icon(Icons.edit_outlined),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none),
+                                ),
+                              ),
+                              TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Description',
+                                  suffixIconColor:
+                                      Color.fromRGBO(110, 110, 110, 1),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Icon(Icons.edit_outlined),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none),
+                                ),
+                              ),
+                              Spacer(),
+                              FilledButtonWidget(
+                                  hintText: 'Save',
+                                  color: Color.fromRGBO(36, 180, 126, 1)),
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              FilledButtonWidget(
+                                  hintText: 'Delete Account',
+                                  color: Color.fromRGBO(255, 51, 51, 1)),
+                              SizedBox(height: 8.0),
                             ],
                           ),
                         ),

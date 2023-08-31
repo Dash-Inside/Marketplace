@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/src/presentation/pages/home_page.dart';
+import 'package:marketplace/src/presentation/pages/new_post_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
           tertiary: Color.fromRGBO(255, 51, 51, 1),
         ),
       ),
-      home: HomePage(),
+      home: NewPostPage(),
     );
   }
 }

@@ -31,7 +31,10 @@ class LoginPage extends StatelessWidget {
             ),
             TextFieldWidget(hintText: 'password'),
             Spacer(),
-            FilledButtonWidget(hintText: 'Login'),
+            FilledButtonWidget(
+              hintText: 'Login',
+              color: Color.fromRGBO(36, 180, 126, 1),
+            ),
           ],
         ),
       ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class FilledButtonWidget extends StatelessWidget {
   final String hintText;
-  const FilledButtonWidget({required this.hintText, super.key});
+  final Color color;
+  const FilledButtonWidget(
+      {required this.color, required this.hintText, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,7 @@ class FilledButtonWidget extends StatelessWidget {
       width: double.infinity,
       child: FilledButton(
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStatePropertyAll(Color.fromRGBO(36, 180, 126, 1)),
+          backgroundColor: MaterialStatePropertyAll(color),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
