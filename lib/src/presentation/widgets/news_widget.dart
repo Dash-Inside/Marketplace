@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
 class NewsWidget extends StatelessWidget {
+  static const double containerMarginBottom = 18.0;
+  static const double containerMarginLeftRight = 24.0;
+  static const double borderRadius = 12.0;
+  static const double paddingColumn = 21.0;
+  static const double paddingCircleavAtrarLeft = 6.0;
+  static const double circleAvatarRadius = 19.0;
+  static const double iconSize = 19.0;
+  static const double sizedBoxWidthBetweenChildren = 6.0;
+  static const double textUserFontSize = 16.0;
+  static const double textGroupFontSize = 14.0;
+  static const double textNewsFontSize = 16.0;
+  static const double paddingTextTop = 12.0;
+
   final String newsText;
   final String groupText;
   final String userName;
@@ -13,36 +26,41 @@ class NewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color colorPrimary = colorScheme.primary;
+    final Color secondaryContainer = colorScheme.secondaryContainer;
+    final Color colorOutline = colorScheme.outline;
+
     return Container(
       margin: EdgeInsets.only(
-        bottom: 18.0,
-        left: 24.0,
-        right: 24.0,
+        bottom: containerMarginBottom,
+        left: containerMarginLeftRight,
+        right: containerMarginLeftRight,
       ),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(232, 232, 232, 1),
-        borderRadius: BorderRadius.circular(12.0),
+        color: secondaryContainer,
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(21.0),
+        padding: const EdgeInsets.all(paddingColumn),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 6.0),
+              padding: const EdgeInsets.only(left: paddingCircleavAtrarLeft),
               child: Row(
                 children: [
                   CircleAvatar(
-                    radius: 19,
-                    backgroundColor: Color.fromRGBO(36, 180, 126, 1),
+                    radius: circleAvatarRadius,
+                    backgroundColor: colorPrimary,
                     child: IconButton(
-                      iconSize: 19,
+                      iconSize: iconSize,
                       icon: Icon(Icons.photo_camera),
                       onPressed: () {},
                     ),
                   ),
                   SizedBox(
-                    width: 6.0,
+                    width: sizedBoxWidthBetweenChildren,
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -51,17 +69,17 @@ class NewsWidget extends StatelessWidget {
                       Text(
                         userName,
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: textUserFontSize,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
                         groupText,
                         style: TextStyle(
-                          fontSize: 14.0,
+                          fontSize: textGroupFontSize,
                           fontWeight: FontWeight.w500,
                           fontStyle: FontStyle.italic,
-                          color: Color.fromRGBO(110, 110, 110, 1),
+                          color: colorOutline,
                         ),
                       ),
                     ],
@@ -70,11 +88,11 @@ class NewsWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: paddingTextTop),
               child: Text(
                 newsText,
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: textNewsFontSize,
                   fontWeight: FontWeight.w600,
                 ),
               ),

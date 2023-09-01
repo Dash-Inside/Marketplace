@@ -1,36 +1,40 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
+  static const double borderRadius = 88.0;
+  static const double contetntPaddingHorizontal = 26.0;
+  static const double borderSideWidth = 1.0;
+  static const double hintTextStyleHeight = 1;
+  static const double hintTextStyleFontSize = 13.0;
+  static const double contetPaddingVertical = 14.0;
+
   final String hintText;
   TextFieldWidget({required this.hintText, super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color colorPrimary = colorScheme.primary;
     OutlineInputBorder outlineBord = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(88.0),
+      borderRadius: BorderRadius.circular(borderRadius),
       borderSide: BorderSide(
-        color: Color.fromRGBO(36, 180, 126, 1),
-        width: 1.0,
-      ),
-    );
-    OutlineInputBorder outlineBord1 = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(88.0),
-      borderSide: BorderSide(
-        color: Color.fromRGBO(36, 180, 126, 1),
-        width: 1.0,
+        color: colorPrimary,
+        width: borderSideWidth,
       ),
     );
 
     return TextField(
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(8.0),
         isDense: true,
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: contetntPaddingHorizontal,
+            vertical: contetPaddingVertical),
         focusedBorder: outlineBord,
-        enabledBorder: outlineBord1,
+        enabledBorder: outlineBord,
         hintText: hintText,
         hintStyle: TextStyle(
-          height: 1.0,
-          fontSize: 13.0,
+          height: hintTextStyleHeight,
+          fontSize: hintTextStyleFontSize,
           fontWeight: FontWeight.w600,
         ),
       ),

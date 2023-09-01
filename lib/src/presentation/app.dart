@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketplace/src/presentation/pages/home_page.dart';
-import 'package:marketplace/src/presentation/pages/new_post_page.dart';
+import 'package:marketplace/src/presentation/pages/log_in_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,13 +11,15 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
-          primary: Color.fromRGBO(36, 180, 126, 1),
-          surface: Colors.white,
-          secondary: Colors.black,
-          tertiary: Color.fromRGBO(255, 51, 51, 1),
+          primary: const Color(0xFF24B47E),
+          surface: const Color(0xFFFFFFFF),
+          secondary: const Color(0xFF000000),
+          tertiary: const Color(0xFFFF3333),
+          outline: const Color(0xFF6E6E6E),
+          secondaryContainer: const Color(0xFFE8E8E8),
         ),
       ),
-      home: NewPostPage(),
+      home: LoginPage(),
     );
   }
 }
